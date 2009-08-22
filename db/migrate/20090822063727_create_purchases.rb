@@ -2,6 +2,7 @@ class CreatePurchases < ActiveRecord::Migration
   def self.up
     create_table :purchases do |t|
       t.integer :customer_id
+      t.integer :product_id
       t.integer :value
       t.timestamps
     end
