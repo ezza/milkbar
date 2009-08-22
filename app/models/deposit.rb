@@ -1,5 +1,5 @@
 class Deposit < ActiveRecord::Base
   def details
-    "Deposited #{value}"
+    "Deposited $#{value.to_f/100}"
   end
 end

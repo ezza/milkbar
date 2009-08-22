@@ -1,0 +1,80 @@
+<% if @logged_in_user %>
+  <h1 style="colour: green;">Hi <%= @logged_in_user.name %>, you have $<%= @logged_in_user.balance.to_f / 100 %> credit.
+<% else %>
+  <% form_tag "/customer/login" do %> 
+    <fieldset>
+  		<%= text_field_tag :name, "name", :onclick => "if(this.value=='name')this.value='';", :onblur => "if(this.value=='')this.value='name'" %> 
+  		<%= password_field_tag :password, "password", :class => 'text', :onclick => "if(this.value=='password')this.value='';", :onblur => "if(this.value=='')this.value='password'"  %>
+    	<button id="header_login" type="submit" name="login">Login</button>
+    </fieldset>
+  <% end -%>
+<% end %>
+<h1>Hungry? Thirsty? Click a product to purchase it.</h1>
+
+<table>
+  <tr>
+  </tr>
+
+
+  <tr>
+    <% @products.each do |product| %>
+      <td>
+        <h3><%= product.name %>:</h3>
+        <a href="/dashboard/purchase_product/<%= product.id %>">
+          <img src="/images/products/<%= product.name.parameterize %>">
+        </a>
+      </td>
+    <% end %>
+  </tr>
+</table>
+
+<br />
+
+<% if @logged_in_user %>
+  <h1>Funds low? Deposit more cash!</h1>
+
+  <% [50,100,200,500,1000,2000].each do |val| %>
+    <a href="/dashboard/deposit?value=<%= val %>">
+      <img src="/images/money/<%= val %>.jpg">
+    </a>
+  <% end %>
+<% end %>
+
+<h1>Gosh you've been hungry! This is your recent activity:</h1>
+
+  <table>
+    <tr>
+      <td>
+        Time Ago
+      </td>
+      <td>
+        Action
+      </td>
+      <td>
+        Details
+      </td>
+      <td>
+        
+        </td>
+    </tr>
+
+    <% @logged_in_user.actions[0..20].each do |action| %>
+
+      <tr>
+        <td>
+          <%= time_ago_in_words action.created_at %>
+        </td>
+        <td>
+          <%= action.class %>
+        </td>
+        <td>
+          <%= action.details %>
+        </td>
+        <td>
+          (<a href="/customer/remove_<%= action.class.to_s.downcase %>/<%= action.id %>">remove</a>)
+        </td>
+      </tr>
+
+    <% end %>
+
+  </table>

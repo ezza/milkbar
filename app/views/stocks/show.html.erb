@@ -1,0 +1,18 @@
+<p>
+  <b>Product:</b>
+  <%=h @stock.product_id %>
+</p>
+
+<p>
+  <b>Cost:</b>
+  <%=h @stock.cost %>
+</p>
+
+<p>
+  <b>Quantity:</b>
+  <%=h @stock.quantity %>
+</p>
+
+
+<%= link_to 'Edit', edit_stock_path(@stock) %> |
+<%= link_to 'Back', stocks_path %>

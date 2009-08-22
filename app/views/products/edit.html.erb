@@ -1,0 +1,27 @@
+<h1>Editing product</h1>
+
+<% form_for(@product) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </p>
+  
+  <p>
+    <%= f.label :buy_cost %>
+    <%= f.text_field :buy_cost %>
+  </p>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @product %> |
+<%= link_to 'Back', products_path %>

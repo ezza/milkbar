@@ -3,6 +3,6 @@ class Purchase < ActiveRecord::Base
   belongs_to :customer
   
   def details
-    "Bought #{product.name} for #{product.price}"
+    "Bought #{product.name} for $#{product.price.to_f/100}"
   end
 end

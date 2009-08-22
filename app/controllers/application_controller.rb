@@ -18,4 +18,11 @@ class ApplicationController < ActionController::Base
       @logged_in_user = nil
     end
   end
+  
+  helper_method :money
+  def money(value)
+    value = value.to_f / 100
+    "$#{value.pad(0,2)}"
+  end
+  
 end

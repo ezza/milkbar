@@ -1,0 +1,25 @@
+<h1>Editing stock</h1>
+
+<% form_for(@stock) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :product_id %><br />
+    <%= f.select :product_id, options_from_collection_for_select(@products, 'id', 'name') %>
+  </p>
+  
+  <p>
+    <%= f.label :cost %><br />
+    <%= f.text_field :cost %>
+  </p>
+  <p>
+    <%= f.label :quantity %><br />
+    <%= f.text_field :quantity %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @stock %> |
+<%= link_to 'Back', stocks_path %>
