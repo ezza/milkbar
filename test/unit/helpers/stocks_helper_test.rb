@@ -1,4 +1,4 @@
 require 'test_helper'
 
-class StocksHelperTest < ActionView::TestCase
+class stockHelperTest < ActionView::TestCase
 end
